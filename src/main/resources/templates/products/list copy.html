@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{products.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{products.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/productss/add}" th:text="#{products.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${productss.empty}" th:text="#{products.list.empty}" />
+            <div th:if="${!productss.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{products.id.label}" scope="col" />
+                            <th th:text="#{products.name.label}" scope="col" />
+                            <th th:text="#{products.price.label}" scope="col" />
+                            <th th:text="#{products.stock.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="products : ${productss}">
+                            <td th:text="${products.id}" />
+                            <td th:text="${products.name}" />
+                            <td th:text="${products.price}" />
+                            <td th:text="${products.stock}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/productss/edit/{id}(id=${products.id})}" th:text="#{products.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/productss/delete/{id}(id=${products.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button th:text="#{products.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
