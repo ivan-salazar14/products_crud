@@ -50,6 +50,8 @@ environment variable when running the container.
 ```
 mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=io.isalazar.products/products
 ```
+![image](https://github.com/ivan-salazar14/products_crud/assets/1231718/e3edfda6-3481-4e1d-bde1-e4c9c2fa8e8e)
+
 
 ## Further readings
 
